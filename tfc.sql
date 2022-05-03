@@ -9,21 +9,22 @@ correo varchar(50),
 nombre varchar(50),
 apellido varchar(50),
 contraseña varchar(15),
-primary key (correo)
+primary key (id_usuarios)
 );
 
 drop table if exists influencers;
 create table influencers(
 id_influencers int auto_increment,
 nombre varchar(50),
-primary key (nombre)
+primary key (id_influencers)
 );
 
 drop table if exists followers;
 create table followers (
-id_usuario varchar(50),
-id_influencer varchar(50),
-primary key (id_usuario,id_influencer),
+followers_id int,
+id_usuario int,
+id_influencer int,
+primary key (followers_id),
 foreign key (id_usuario) references usuarios(id_usuarios),
 foreign key (id_influencer) references influencers(id_influencers)
 );
@@ -32,10 +33,10 @@ foreign key (id_influencer) references influencers(id_influencers)
 drop table if exists networks;
 create table networks (
 id_plataforma int auto_increment,
-tipo enum('Twitch','Twitter','Youtube'),
-influencer varchar(50),
+tipo enum('Twitch','Twitter','Youtube','IG','TIKTOK'),
+id_influencer int,
 primary key (id_plataforma),
-foreign key (influencers) references influencers(id_influencers)
+foreign key (id_influencer) references influencers(id_influencers)
 );
 
 drop table if exists posts;
@@ -43,9 +44,9 @@ create table posts (
 id_post int auto_increment,
 titulo varchar(50),
 texto varchar(250),
-influencer varchar(50),
+id_influencer int,
 primary key (id_post),
-foreign key (influencer) references influencers(id_influencers)
+foreign key (id_influencer) references influencers(id_influencers)
 );
 
 insert into usuarios (correo, nombre, apellido, contraseña) values 
