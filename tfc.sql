@@ -43,7 +43,7 @@ drop table if exists posts;
 create table posts (
 id_post int auto_increment,
 titulo varchar(50),
-texto varchar(250),
+texto text,
 id_influencer int,
 primary key (id_post),
 foreign key (id_influencer) references influencers(id_influencers)
